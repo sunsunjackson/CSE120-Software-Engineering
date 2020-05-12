@@ -1,9 +1,10 @@
 <?php  include('header.php'); ?>
 
 <!-- This is the image in the front cover-->
-<div class="blueimg">
-    <h1 class="top-left">Maia</h1>
-    <p1 class="top-left2">Best Practice, Most Efficient</p1>
+<div class="blurbackground">
+  <h1 class="top-left" style="color: white">Maia</h1>
+  <p1 class="top-left2" style="color: white">Best Practice, Most Efficient</p1>
+  <p1 class="top-right" style="color: white">&copy; <?php echo date('Y'); ?> Cornucopia</p1>
 </div>
 
 <!-- Asking the new User to enter the information in order to add new user into the database. Has to be ALL CAPS -->

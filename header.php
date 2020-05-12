@@ -35,12 +35,18 @@ if(!$database) {
 	body {
 		font-family: "Lato", sans-serif;
 	}
-	.blueimg {
+	.blurbackground {
 		width: 100%;
 		height: 100px;
 		padding: 3px;
-		background-image: url(blue.jpg);
+		background-image: url(blur.png);
 		background-size: 100% 100%;
+	}
+	.logo {
+		width: 132px;
+		height: 78px;
+		padding-top: 5px;
+		padding-left: 35px;
 	}
 	.stopwatch {
 		height: 50px;
@@ -91,15 +97,21 @@ if(!$database) {
 		color: black;
 		background-color: white;
 	}
+	.top-right {
+		position: absolute;
+		top: 75px;
+		right: 9px;
+		font-size: 15px;
+	}
 	.top-left {
 		position: absolute;
-		top: 20px;
-		left: 235px;
+		left: 190px;
+		font-size: 60px;
 	}
 	.top-left2{
 		position: absolute;
 		top:65px;
-		left: 230px;
+		left: 190px;
 	}
 	.trade-mark{
 		position: absolute;

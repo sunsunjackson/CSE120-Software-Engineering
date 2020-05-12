@@ -1,9 +1,10 @@
 <?php include('header.php'); ?>
 
 <!-- This is the image in the front cover-->
-<div class="blueimg">
- 	<h1 class="top-left">Maia</h1>
- 	<p1 class="top-left2">Best Practice, Most Efficient</p1>
+<div class="blurbackground">
+ 	<h1 class="top-left" style="color: white">Maia</h1>
+ 	<p1 class="top-left2" style="color: white">Fertility · Growth · Abundance · Nourishment</p1>
+ 	<p1 class="top-right" style="color: white">&copy; <?php echo date('Y'); ?> Cornucopia</p1>
 </div>
 
 <!-- Confirmation message after adding a new user -->
@@ -18,7 +19,7 @@
 <!-- Return to Home button. It transitions to admin.php -->
 <form action = "admin.php">
     <center>
-    	<button type="submit" class="btn btn-primary" name = "submit">Return to Home</button>
+    	<button type="submit" class="btn btn-outline-warning" name = "submit">Return to Home</button>
     </center>
 </form>
 

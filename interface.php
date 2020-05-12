@@ -9,20 +9,56 @@ if(!$database) {
 
 <!-- implementing the side bar from header.php -->
 <div class="sidenav">
-    <a href="interface.php">Home <i class="fa fa-home" aria-hidden="true"></i></a>
-    <a href="timeruser.php">Timer <i class="fa fa-clock-o" aria-hidden="true"></i></a>
-   <!--  <a href="history.php">History <i class="fa fa-history" aria-hidden="true"></i></a>
-    <a href="#settings">Settings <i class="fa fa-cog" aria-hidden="true"></i></a> -->
-    <a href="calendaruser.php">Calendar <i class="fa fa-calendar-o" aria-hidden="true"></i></a>
+    <img src="cornlogo.png" class="logo">
+    <br><br><br><br><br>
+    <a href="interface.php">Home <i class="fa fa-home" aria-hidden="true"></i></a><br>
+    <a href="timeruser.php">Stopwatch <i class="fa fa-clock-o" aria-hidden="true"></i></a><br>
+ <!--    <a href="history.php">History <i class="fa fa-history" aria-hidden="true"></i></a><br>
+    <a href="#settings">Settings <i class="fa fa-cog" aria-hidden="true"></i></a><br> -->
+    <a href="calendaruser.php">Calendar <i class="fa fa-calendar-o" aria-hidden="true"></i></a><br>
     <a href="suggestion.php">Suggestion <i class="fa fa-info" aria-hidden="true"></i></a>
     <a class="bottomFix" style="padding-bottom: 40px" href="logout.php">Log out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
 </div>
 
 <!-- This is the image in the front cover-->
-<div class="blueimg">
- 	<h1 class="top-left">Maia</h1>
- 	<p1 class="top-left2">Best Practice, Most Efficient</p1>
+<div class="blurbackground">
+ 	<h1 class="top-left" style="color: white">Maia</h1>
+ 	<p1 class="top-left2" style="color: white">Fertility · Growth · Abundance · Nourishment</p1>
+    <p1 class="top-right" style="color: white">&copy; <?php echo date('Y'); ?> Cornucopia</p1>
 </div>
+
+<script>
+    function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}
+</script>
 
 <?php
 
@@ -41,10 +77,6 @@ echo '<br>' . '<h5 class="away-from-sidebar">' . 'Welcome back, ' . $name . '. T
 <!-- Farm data table -->
 <?php
 echo '<br>';
-echo '<div style="padding-left: 1205px">';
-echo '<form action = "edit_data_user.php" method = "POST">';
-echo '<button type="submit" class="btn btn-primary" name = "submit">Edit Data</button>';
-echo '</div>';
 
 // Executes the SQL query that retreives all data from crop table in the database
 $query = "SELECT * FROM crop";
@@ -80,10 +112,24 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 echo '</tbody>';
 echo '</table></div>';
 echo '</div>';
-echo '<br><br><br><br><br><br><br><br><br>';
-
-
 ?>
+
+<!-- Edit Data button that transitions to the edit_data_user.php that allows user to edit table data -->
+<form action="edit_data_user.php" class="away-from-sidebar">
+            <button type="submit" class="btn btn-outline-warning" name="submit">Edit Data</button>
+</form>
+
+<!-- Allows the user to export the data into an excel sheet -->
+<form style="position:absolute; left:285px; width:100%">
+            <button onclick="exportTableToExcel('almondTable')" type="submit" class="btn btn-outline-warning" name="submit">Export Data as CSV</button>
+</form>
+
+<!-- Refresh the page -->
+<!-- <form style="position:absolute; left:455px; width:100%">
+        <button onclick="window.location.reload();" class="btn btn-outline-warning">Refresh page</button>
+</form> -->
+
+<br><br><br><br><br><br><br><br><br>
 
 <!-- DataTable function from Bootstrap 4. This provides the search, pagination, and filter for the table. -->
 <script>

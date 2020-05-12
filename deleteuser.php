@@ -8,9 +8,10 @@ if(!$database) {
 ?>
 
 <!-- implementing text over image from header.php -->
-<div class="blueimg">
- 	<h1 class="top-left">Maia</h1>
- 	<p1 class="top-left2">Best Practice, Most Efficient</p1>
+<div class="blurbackground">
+    <h1 class="top-left" style="color: white">Maia</h1>
+    <p1 class="top-left2" style="color: white">Fertility · Growth · Abundance · Nourishment</p1>
+    <p1 class="top-right" style="color: white">&copy; <?php echo date('Y'); ?> Cornucopia</p1>
 </div>
 
 <?php
@@ -76,11 +77,11 @@ echo '</div>'; //end of the table function
     <label for="psw-repeat"><b>Repeat Email</b></label>
     <input type="text" placeholder="REPEAT EMAIL" name="repeatEmail" required>
     <br>
-    <button type="submit" class="btn btn-primary" name="submit">Confirm</button>
+    <button type="submit" class="btn btn-outline-warning" name="submit">Confirm</button>
+    <br><br><br><br><br><br><br><br><br><br>
 </form>
-<br><br><br>
 
-?>
+
 
 <!-- DataTable function from Bootstrap 4. This provides the search, pagination, and filter for the table. -->
 <script>

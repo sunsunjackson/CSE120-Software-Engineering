@@ -9,21 +9,55 @@ if(!$database) {
 
 <!-- implementing side bar from header.php -->
 <div class="sidenav">
-    <!-- i class are font-awesome icons -->
-	<a href="admin.php">Home <i class="fa fa-home" aria-hidden="true"></i></a>
-	<a href="timeradmin.php">Timer <i class="fa fa-clock-o" aria-hidden="true"></i></a>
-	<!-- <a href="history.php">History <i class="fa fa-history" aria-hidden="true"></i></a>
-	<a href="#settings">Settings <i class="fa fa-cog" aria-hidden="true"></i></a> -->
-    <a href="calendaradmin.php">Calendar <i class="fa fa-calendar-o" aria-hidden="true"></i></a>
-	<a class="bottomFix" style="padding-bottom: 40px" href="logout.php">Log out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    <img src="cornlogo.png" class="logo">
+    <br><br><br><br><br>
+    <a href="interface.php">Home <i class="fa fa-home" aria-hidden="true"></i></a><br>
+    <a href="timeradmin.php">Stopwatch <i class="fa fa-clock-o" aria-hidden="true"></i></a><br>
+    <!-- <a href="history.php">History <i class="fa fa-history" aria-hidden="true"></i></a><br>
+    <a href="#settings">Settings <i class="fa fa-cog" aria-hidden="true"></i></a><br> -->
+    <a href="calendaradmin.php">Calendar <i class="fa fa-calendar-o" aria-hidden="true"></i></a><br>
+    <a class="bottomFix" style="padding-bottom: 40px" href="logout.php">Log out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
 </div>
 
 <!-- This is the image in the front cover-->
-<div class="blueimg">
- 	<h1 class="top-left">Maia</h1>
- 	<p1 class="top-left2">Best Practice, Most Efficient</p1>
+<div class="blurbackground">
+    <h1 class="top-left" style="color: white">Maia</h1>
+    <p1 class="top-left2" style="color: white">Fertility · Growth · Abundance · Nourishment</p1>
+    <p1 class="top-right" style="color: white">&copy; <?php echo date('Y'); ?> Cornucopia</p1>
 </div>
 
+<script>
+    function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}
+</script>
 
 <?php
 // The $_POST variables are retrieved from login.php for SQL purposes
@@ -75,22 +109,23 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 echo '</tbody>';
 echo '</table></div>';
 echo '</div>'; //end of the table function
-
-// Add User button that transitions to adduser.php when clicked
-echo '<form action="adduser.php" class="away-from-sidebar">
-            <button type="submit" class="btn btn-primary" name="submit">Add User</button>
-        </form>';
-
-// Delete User button that transitions to deleteuser.php when clicked
-echo '<form action="deleteuser.php" style="position:absolute; left:285px; width:100%">
-            <button type="submit" class="btn btn-primary" name="submit">Delete User</button>
-        </form>';
-
-// line breaks
-echo '<br><br><br><br><br><br><br><br><br>';
-
-
 ?>
+
+<!-- Add User button that transitions to adduser.php when clicked -->
+<form action="adduser.php" class="away-from-sidebar">
+            <button type="submit" class="btn btn-outline-warning" name="submit">Add User</button>
+</form>
+
+<!-- Delete User button that transitions to deleteuser.php when clicked -->
+<form action="deleteuser.php" style="position:absolute; left:285px; width:100%">
+            <button type="submit" class="btn btn-outline-warning" name="submit">Delete User</button>
+</form>
+<!-- Allows the user to export the data into an excel sheet -->
+<form style="position:absolute; left:405px; width:100%">
+            <button onclick="exportTableToExcel('userTable')" type="submit" class="btn btn-outline-warning" name="submit">Export Data as CSV</button>
+</form>
+
+<br><br><br><br><br><br><br><br><br>
 
 <!-- DataTable function from Bootstrap 4. This provides the search, pagination, and filter for the table. -->
 <script>

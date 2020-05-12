@@ -115,9 +115,10 @@
     <title>CALENDAR</title>
 
 <!-- This is the image in the front cover-->
-<div class="blueimg">
-    <h1 class="top-left">Maia</h1>
-    <p1 class="top-left2">Best Practice, Most Efficient</p1>
+<div class="blurbackground">
+    <h1 class="top-left" style="color: white">Maia</h1>
+    <p1 class="top-left2" style="color: white">Fertility · Growth · Abundance · Nourishment</p1>
+    <p1 class="top-right" style="color: white">&copy; <?php echo date('Y'); ?> Cornucopia</p1>
 </div>
 <br>
 
@@ -131,11 +132,13 @@
 
 <!-- implementing side bar from header.php -->
 <div class="sidenav">
-    <a href="interface.php">Home <i class="fa fa-home" aria-hidden="true"></i></a>
-    <a href="timeruser.php">Timer <i class="fa fa-clock-o" aria-hidden="true"></i></a>
-    <!-- <a href="history.php">History <i class="fa fa-history" aria-hidden="true"></i></a>
-    <a href="#settings">Settings <i class="fa fa-cog" aria-hidden="true"></i></a> -->
-    <a href="calendaruser.php">Calendar <i class="fa fa-calendar-o" aria-hidden="true"></i></a>
+    <img src="cornlogo.png" class="logo">
+    <br><br><br><br><br>
+    <a href="interface.php">Home <i class="fa fa-home" aria-hidden="true"></i></a><br>
+    <a href="timeruser.php">Stopwatch <i class="fa fa-clock-o" aria-hidden="true"></i></a><br>
+   <!--  <a href="history.php">History <i class="fa fa-history" aria-hidden="true"></i></a><br>
+    <a href="#settings">Settings <i class="fa fa-cog" aria-hidden="true"></i></a><br> -->
+    <a href="calendaruser.php">Calendar <i class="fa fa-calendar-o" aria-hidden="true"></i></a><br>
     <a href="suggestion.php">Suggestion <i class="fa fa-info" aria-hidden="true"></i></a>
     <a class="bottomFix" style="padding-bottom: 40px" href="logout.php">Log out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
 </div>
@@ -164,15 +167,15 @@
         }
         .today
         {
-        background:#50A8E7;
+        background:#e69500;
         }
         th:nth-of-type(7),td:nth-of-type(7)
         {
-        color: #50A8E7;
+        color: #e69500;
         }
         th:nth-of-type(1),td:nth-of-type(1)
         {
-            color:#50A8E7;
+            color:#e69500;
         }
     </style>
 </head>
